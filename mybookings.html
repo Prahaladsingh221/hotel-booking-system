@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Bookings</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="booking-bg">
+
+<h2 style="text-align:center; color:white;">My Bookings</h2>
+
+<div class="rooms" id="bookingList"></div>
+
+<script>
+  let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+let container = document.getElementById("bookingList");
+
+container.innerHTML = "";
+
+if (bookings.length === 0) {
+  container.innerHTML = "<p style='color:white;'>No bookings yet</p>";
+}
+
+bookings.forEach(b => {
+  let checkin = b.checkin || "N/A";
+  let checkout = b.checkout || "N/A";
+
+  let card = `
+    <div class="card">
+      <h3>${b.room}</h3>
+      <p>Total Paid: ₹${b.total}</p>
+      <p>${checkin} → ${checkout}</p>
+    </div>
+  `;
+  container.innerHTML += card;
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<h2>Admin Dashboard</h2>
+
+<ul id="bookingList"></ul>
+
+<script>
+  let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+  let list = document.getElementById("bookingList");
+
+  bookings.forEach(b => {
+    let li = document.createElement("li");
+    li.innerText = b.room + " - " + b.date;
+    list.appendChild(li);
+  });
+</script>

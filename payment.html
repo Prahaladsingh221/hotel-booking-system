@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="payment-bg">
+
+<div class="payment-container">
+
+  <h2>Complete Your Booking</h2>
+
+  <div class="payment-summary">
+    <p id="payRoom"></p>
+    <p id="payAmount"></p>
+  </div>
+
+  <!-- PAYMENT OPTIONS -->
+  <div class="payment-methods">
+    <button onclick="selectMethod('card')">💳 Card</button>
+    <button onclick="selectMethod('upi')">📱 UPI</button>
+    <button onclick="selectMethod('netbanking')">🏦 Net Banking</button>
+  </div>
+
+  <!-- CARD FORM -->
+  <div id="cardForm" class="pay-form">
+    <input type="text" placeholder="Card Number">
+    <input type="text" placeholder="Card Holder Name">
+    <input type="text" placeholder="Expiry (MM/YY)">
+    <input type="text" placeholder="CVV">
+  </div>
+
+  <!-- UPI FORM -->
+  <div id="upiForm" class="pay-form" style="display:none;">
+    <input type="text" placeholder="Enter UPI ID (example@upi)">
+  </div>
+
+  <!-- NET BANKING -->
+  <div id="netForm" class="pay-form" style="display:none;">
+    <select>
+      <option>Select Bank</option>
+      <option>SBI</option>
+      <option>HDFC</option>
+      <option>ICICI</option>
+    </select>
+  </div>
+
+  <button class="pay-btn" onclick="payNow()">Pay Now</button>
+
+</div>
+
+<script>
+  let room = localStorage.getItem("room");
+  let total = localStorage.getItem("totalPrice");
+
+  document.getElementById("payRoom").innerText = "Room: " + room;
+  document.getElementById("payAmount").innerText = "Total: ₹" + total;
+
+  function selectMethod(method) {
+    document.getElementById("cardForm").style.display = "none";
+    document.getElementById("upiForm").style.display = "none";
+    document.getElementById("netForm").style.display = "none";
+
+    if (method === "card") {
+      document.getElementById("cardForm").style.display = "block";
+    } else if (method === "upi") {
+      document.getElementById("upiForm").style.display = "block";
+    } else {
+      document.getElementById("netForm").style.display = "block";
+    }
+  }
+
+  function payNow() {
+  let booking = {
+    room: localStorage.getItem("room"),
+    total: localStorage.getItem("totalPrice"),
+    checkin: localStorage.getItem("checkin"),
+    checkout: localStorage.getItem("checkout")
+  };
+
+  let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+  bookings.push(booking);
+
+  localStorage.setItem("bookings", JSON.stringify(bookings));
+
+  window.location.href = "receipt.html";
+}
+</script>
+
+</body>
+</html>

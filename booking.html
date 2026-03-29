@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Available Rooms</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ✅ LOGIN CHECK -->
+<script>
+  if(localStorage.getItem("loggedIn") !== "true") {
+    alert("Please login first");
+    window.location.href = "login.html";
+  }
+</script>
+
+<!-- Top Section -->
+<h2 style="text-align:center;">Available Rooms</h2>
+<p style="text-align:center;" id="summary"></p>
+
+<!-- Rooms Display -->
+<div class="rooms" id="roomResults"></div>
+
+<!-- Logout -->
+<div style="text-align:center; margin:20px;">
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script src="js/app.js"></script>
+
+<script>
+  // Show summary (days info)
+  let days = localStorage.getItem("days") || 1;
+let checkin = localStorage.getItem("checkin");
+let checkout = localStorage.getItem("checkout");
+
+document.getElementById("summary").innerText =
+  "Stay: " + checkin + " to " + checkout + " (" + days + " nights)";
+  // Confirm booking with storage
+  function confirmBooking(room, total) {
+    let booking = {
+      room: room,
+      total: total,
+      days: days
+    };
+
+    let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    bookings.push(booking);
+
+    localStorage.setItem("bookings", JSON.stringify(bookings));
+
+    alert("Booking Confirmed for " + room + " | Total: ₹" + total);
+  }
+</script>
+
+</body>
+</html>

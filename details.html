@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Room Details</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="details-bg">
+
+<h2 class="details-title">Room Details</h2>
+
+<div class="details-container">
+
+  <img id="roomImage" class="details-img">
+
+  <div class="details-info">
+    <h2 id="roomName"></h2>
+    <p id="price"></p>
+
+    <h3>Facilities</h3>
+
+    <div class="facilities">
+      <span>❄️ Air Conditioning</span>
+      <span>🛏 King Size Bed</span>
+      <span>📶 Free WiFi</span>
+      <span>🍽 Free Breakfast</span>
+      <span>🏊 Swimming Pool</span>
+      <span>🛡 24/7 Security</span>
+      <span>🚿 Private Bathroom</span>
+      <span>🅿 Free Parking</span>
+    </div>
+
+    <button onclick="goToPayment()">Reserve</button>
+    <button onclick="goBack()">⬅ Back</button>
+
+  </div>
+
+</div>
+
+<script src="js/app.js"></script>
+
+<script>
+  let room = localStorage.getItem("room");
+  let total = localStorage.getItem("totalPrice");
+
+  // FULL ROOM LIST (matches app.js)
+  let rooms = {
+    "Deluxe Room": { img: "images/room1.jpg" },
+    "Suite Room": { img: "images/room2.jpg" },
+    "Luxury Room": { img: "images/room3.jpg" },
+    "Royal Suite": { img: "images/room4.jpg" },
+    "Executive Room": { img: "images/room5.jpg" },
+    "Premium Suite A": { img: "images/room6.jpg" },
+    "Economy Room A": { img: "images/room7.jpg" },
+    "Premium Suite B": { img: "images/room8.jpg" },
+    "Economy Room B": { img: "images/room9.jpg" },
+    "Premium Deluxe": { img: "images/room10.jpg" },
+    "Executive Suite": { img: "images/room11.jpg" }
+  };
+
+  document.getElementById("roomName").innerText = room;
+  document.getElementById("price").innerText = "Total Price: ₹" + total;
+  document.getElementById("roomImage").src = rooms[room].img;
+
+  function goBack() {
+    window.location.href = "booking.html";
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Receipt</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="payment-bg">
+
+<div class="payment-container">
+
+  <h2>Booking Confirmed ✅</h2>
+
+  <div class="payment-summary">
+    <p id="rRoom"></p>
+    <p id="rAmount"></p>
+    <p id="rDates"></p>
+  </div>
+
+  <p style="color:green; font-weight:bold;">
+    Thank you for booking with us!
+  </p>
+
+  <button onclick="goHome()">Back to Home</button>
+
+</div>
+
+<script>
+  let room = localStorage.getItem("room");
+  let total = localStorage.getItem("totalPrice");
+  let checkin = localStorage.getItem("checkin");
+  let checkout = localStorage.getItem("checkout");
+
+  document.getElementById("rRoom").innerText = "Room: " + room;
+  document.getElementById("rAmount").innerText = "Total Paid: ₹" + total;
+  document.getElementById("rDates").innerText =
+    "Stay: " + checkin + " to " + checkout;
+
+  function goHome() {
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
