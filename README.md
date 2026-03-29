@@ -37,6 +37,7 @@ It integrates:
 
 ## Project Structure
 
+```text
 hotel-booking-system/
 │
 ├── index.html
@@ -46,6 +47,7 @@ hotel-booking-system/
 ├── receipt.html
 ├── mybookings.html
 ├── login.html
+├── admin.html
 │
 ├── css/
 │   └── style.css
@@ -54,6 +56,7 @@ hotel-booking-system/
 │   └── app.js
 │
 ├── images/
+│   ├── hotel.jpg
 │   ├── room1.jpg
 │   ├── room2.jpg
 │   ├── room3.jpg
